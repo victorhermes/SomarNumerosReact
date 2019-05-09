@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as FavoriteActions from './store/actions/favorites';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as FavoriteActions from "./store/actions/favorites";
 
 class SomarNumeros extends Component {
   state = {
-    number: 0,
+    number: 0
   };
 
   render() {
@@ -17,7 +17,9 @@ class SomarNumeros extends Component {
           value={this.state.number}
           onChange={e => this.setState({ number: e.target.value })}
         />
-        <button onClick={() => this.props.somar(this.state.number)}>Somar</button>
+        <button onClick={() => this.props.somar(this.state.number++)}>
+          Somar
+        </button>
       </Fragment>
     );
   }
@@ -25,12 +27,13 @@ class SomarNumeros extends Component {
 
 const mapStateToProps = state => ({
   favorites: state.favorites,
-  number: state.favorites.number,
+  number: state.favorites.number
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(FavoriteActions, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(FavoriteActions, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(SomarNumeros);
